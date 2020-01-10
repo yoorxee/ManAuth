@@ -28,7 +28,7 @@ SHA256算法运行1000次的平均时间为：473ms
 ## 签名说明
 API的安全认证一律采用Access Key与请求签名机制。 Access Key由Access Key ID和Secret Access Key组成，均为字符串。 对于每个HTTP请求，使用下面所描述的算法生成一个认证字符串。提交认证字符串放在Authorization头域里。服务端根据生成算法验证认证字符串的正确性。 认证字符串的格式为{accessKeyId}/{timestamp}/{project}/{signedHeaders}/{signature}。
 
-云 API 支持 GET 和 POST 请求，对于GET方法，只支持 Content-Type: application/x-www-form-urlencoded 协议格式。对于POST方法，目前支持 Content-Type: application/json
+API 支持 GET 和 POST 请求，对于GET方法，只支持 Content-Type: application/x-www-form-urlencoded 协议格式。对于POST方法，目前支持 Content-Type: application/json
 
 * ``accessKeyId``	API密钥ID，secret_id与secret_key一一对应secret_key用来生成请求签名 signature
 * ``timestamp``	时间戳，发起API请求的时间
@@ -62,10 +62,8 @@ Content-Type
 经过上一步之后值为空字符串的Header忽略，其余的转换为 UriEncode(name) + ":" + UriEncode(value) 的形式。
 把上面转换后的所有字符串按照字典序进行排序。
 将排序后的字符串按顺序用\n符号连接起来得到最终的CanonicalHeaders。
+
 编码示例
-
-该示例演示使用百度智能云推荐范围之外的Header进行编码，此时signedHeaders不能为空（默认值Host）。在下面的示例中选择对 Date 进行编码。
-
 如下是发送请求的Header:
 
 ```shell
